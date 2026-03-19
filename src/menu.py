@@ -5,12 +5,3 @@ while validation != 0:
     for key, value in options.items():
         print(f"{key} - - {value} - - ")
     validation = int(input("Enter your choice: "))
-
-items = [1, 2, 3, 4, 5]
-total = 0
-
-for num in items:
-   if num == 3:
-      break
-   total += num
-   print(f"Current total: {total}")

@@ -5,4 +5,4 @@ def validate_description(descripcion):
     return len(descripcion) > 0
 
 def validate_priority(priority):
-    return priority in ["high", "mid", "low"]
+    return priority.lower() in ["high", "mid", "low"]

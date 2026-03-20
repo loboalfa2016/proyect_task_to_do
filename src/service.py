@@ -1,11 +1,11 @@
 import valiadation
 
-task = []
+selected_task = []
 
 def add_task():
     title = input("Enter the TASK name: ")
     description = input("Enter the TASK description: ")
-    priority = input("Enter the TASK priority (high, mid, low)")
+    priority = input("Enter the TASK priority (high, mid, low): ")
 
     print("\nSelect the Task status :")
     print("1. Pending")
@@ -24,13 +24,13 @@ def add_task():
             print("error")
             status = 'Pending'
     if valiadation.validate_title(title) and valiadation.validate_description(description) and valiadation.validate_priority(priority):
-        tasks ={
+        task_data ={
             "title": title,
             "description": description,
             "priority": priority,
             "status": status
         } 
-        task.append(tasks)
+        selected_task.append(task_data)
     else:
         print("error")
 
@@ -52,35 +52,31 @@ def filter_tasks_by_status(tasks, search_status):
     search_status = search_status.strip().lower()
 
     filtered_tasks = [
-        task for task in tasks
-        if task.get("status", "").strip().lower() == search_status
+    task for task in tasks
+    if task.get("status", "").strip().lower() == search_status
     ]
 
     return filtered_tasks
 
-task = []
 def task_listing():
-    option = -1
-    if option == 3:
-        print("the task list is: \n")
-    if len(task) > 0:
-        for i, j in enumerate(task, start=1):
-            print(f'task #{i} . NAME:{j["title"]} STATE: {j["status"]} PRIORITY: {j["priority"]} \n')
+    if len(selected_task) > 0:
+        for i, j in enumerate(selected_task, start=1):
+            print(f'task #{i} \n NAME: {j["title"]} \n STATUS: {j["status"]} \n PRIORITY: {j["priority"]} \n')
     else:
         print("empty list")
 
 
 def update_task():
-    if task:
+    if selected_task:
         task_listing()
         try:
             indice = int(input("Enter the task # to update: ")) - 1
-            if 0 <= indice < len(task):
-                task = task[indice]
+            if 0 <= indice < len(selected_task):
+                task_selected = selected_task[indice]
                 print("\nEnter the new task information (leave blank to stop making changes): ")
-                title = input(f"Title ({task['title']}): ")
-                description = input(f"Description ({task['description']}): ")
-                priority = input(f"Priority ({task['priority']}): ")
+                title = input(f"Title ({task_selected['title']}): ")
+                description = input(f"Description ({task_selected['description']}): ")
+                priority = input(f"Priority ({task_selected['priority']}): ")
                 
                 print("\nSelecct the task's new status: ")
                 print("1. Pending")
@@ -89,22 +85,22 @@ def update_task():
                 status_option = input("Enter the new task status (leave blank to stop making changes): ")
 
                 if title:
-                    task['title'] = title
+                    task_selected['title'] = title
                 if description:
-                    task['description'] = description
+                    task_selected['description'] = description
                 if priority:
-                    if valiadation.validar_prioridad(priority):
-                        task['priority'] = priority
+                    if valiadation.validate_priority(priority):
+                        task_selected['priority'] = priority
                     else:
                         print("Invalid priority. Not changed.")
                 if status_option:
                     match status_option:
                         case "1":
-                            task['status'] = "pending"
+                            task_selected['status'] = "Pending"
                         case "2":
-                            task['status'] = "in progress"
+                            task_selected['status'] = "In Progress"
                         case "3":
-                            task['status'] = "completed"
+                            task_selected['status'] = "Completed"
                         case _:
                             print("Invalid option. Not changed.")
                 print("Task successfuly updated!")
@@ -116,56 +112,26 @@ def update_task():
         print("No tasks.")
 
 
-
-def show_task(): #crea la funcion para mostrar tareas
-    for i, t in enumerate(task): # utilizamos "for" "in" para que recorra todas las tareas teniendo en cuenta la posicion de la tarea (i), 0,1,2 y cada tarea "t" tittle
-        print(i + 1, "-", t["title"]) #mostramos el resultado "print", el numero de la tarea "i", el guion "-" es solo para que se vea mas ordenado, "t" es titulo de la tarea, metemos en [] oara que muestre el nombre de la tarea seleccionada
-
-def delete_task(): #Aqui creamos la funcion con "DEF"
-    show_task() #Le mostramos al usuario las tareas para que el usuario vea cual va a borrar
-
-    while True: #Usamos while true hasta que el usuario lo haga bien
-        try:  #Intentamos utilizar el codigo sin que se rompa
-            i = int(input("\nNumber to delete: ")) -1 #Pedimos un numero y lo convertimos a numero entero
-
-            if i >= 0 and i < len(task): #Utilizamos len para que represente todos los elementos de una lista en este caso son 3
-                task.pop(i) #PARA ELIMINAR LA TAREA UTILIZAMOS LA VARIABLE .pop()
-                print("Task deleted\n") #Confirmamos al usuario la tarea confirmada, la /n significa que baje una linea
-                break #Salimos del ciclo porque todo se ejecuto correctamente
-            else:
-                print("Invalid number") #Si el numero no exite = error
-
-        except:
-            print("Error, Enter a number\n") #Si el usuario escribe letras evita que se dañe todo el programa
-
-            #RESUMEN: El usuario elige un numero, el programa valida que exista y luego elimina esa tarea usando .pop()
-delete_task() #De la linea 29-32 es prueba
-
-print("Final list:\n")
-show_task ()
-print()
-
-def delete_task(): #crea la funcion para mostrar tareas
-    if len(task) == 0:# utilizamos "for" "in" para que recorra todas las tareas teniendo en cuenta la posicion de la tarea (i), 0,1,2 y cada tarea "t" tittle
+def delete_task():
+    if not selected_task:
         print("No tasks to delete\n")
-        return #mostramos el resultado "print", el numero de la tarea "i", el guion "-" es solo para que se vea mas ordenado, "t" es titulo de la tarea, metemos en [] oara que muestre el nombre de la tarea seleccionada
- #Aqui creamos la funcion con "DEF"
-    task_listing() #Le mostramos al usuario las tareas para que el usuario vea cual va a borrar
+        return
 
-    while True: #Usamos while true hasta que el usuario lo haga bien
-        try:  #Intentamos utilizar el codigo sin que se rompa
-            i = int(input("\nEnter the task number to delete: ")) -1 #Pedimos un numero y lo convertimos a numero entero
+    task_listing() 
 
-            if 0 <= i < len(task):
-                task.pop(i)
+    while True: 
+        try:  
+            i = int(input("\nEnter the task number to delete: ")) -1 
+
+            if 0 <= i < len(selected_task):
+                selected_task.pop(i)
                 print("Task deleted\n")
                 break
             else:
                 print("Invalid number")
 
-        except:
-            print("Error, enter a number\n") #Si el usuario escribe letras evita que se dañe todo el programa
-
-#NANDO"
+        except ValueError:
+            print("Error, enter a number\n") 
+            
 
 

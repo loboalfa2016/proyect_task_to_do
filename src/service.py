@@ -14,11 +14,11 @@ def add_task():
     status_option = input("Enter an option: ")
 
     match status_option:
-        case 1:
+        case "1":
             status = 'Pending'
-        case 2: 
+        case "2": 
             status = 'In Progress'
-        case 3: 
+        case "3": 
             status = 'Completed'
         case _:
             print("error")
@@ -65,7 +65,7 @@ def task_listing():
         print("the task list is: \n")
     if len(task) > 0:
         for i, j in enumerate(task, start=1):
-            print(f'task #{i + 1} . NAME:{j["name"]} STATE: {j["state"]} PRIORITY: {j["priority"]} \n')
+            print(f'task #{i} . NAME:{j["title"]} STATE: {j["status"]} PRIORITY: {j["priority"]} \n')
     else:
         print("empty list")
 

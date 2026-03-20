@@ -3,32 +3,32 @@ import valiadation
 task = []
 
 def add_task():
-    titulo = input("ingrese el nombre de la tarea")
-    descripcion = input(" ingrese la descripcionde la tarea")
-    prioridad = input("ingrese la prioridad de la tarea(alta, media, baja)")
+    title = input("Enter the TASK name: ")
+    description = input("Enter the TASK description: ")
+    priority = input("Enter the TASK priority (high, mid, low)")
 
-    print("\nSeleccione el estado de la tarea:")
-    print("1. Pendiente")
-    print("2. En progreso")
-    print("3. Completada")
-    opcion_estado = input("Ingrese una opción: ")
+    print("\nSelect the Task status :")
+    print("1. Pending")
+    print("2. In Progress")
+    print("3. Completed")
+    status_option = input("Enter an option: ")
 
-    match opcion_estado:
+    match status_option:
         case 1:
-            estado = 'pendiente'
+            status = 'Pending'
         case 2: 
-            estado = 'en progreso'
+            status = 'In Progress'
         case 3: 
-            estado = 'completado'
+            status = 'Completed'
         case _:
             print("error")
-            estado = 'pendiente'
-    if valiadation.validar_titulo(titulo) and valiadation.validar_descripcion(descripcion) and valiadation.validar_prioridad(prioridad):
+            status = 'Pending'
+    if valiadation.validate_title(title) and valiadation.validate_description(description) and valiadation.validate_priority(priority):
         tasks ={
-            "titulo": titulo,
-            "descripcion": descripcion,
-            "prioridad": prioridad,
-            "estado": estado
+            "title": title,
+            "description": description,
+            "priority": priority,
+            "status": status
         } 
         task.append(tasks)
     else:

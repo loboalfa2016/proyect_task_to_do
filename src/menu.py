@@ -16,7 +16,8 @@ def start_menu():
         try:
             option = int(input("Choose what do you want to do: "))
             if option == 1:
-                print("Create task Selected")
+                from service import add_task
+                add_task()
             elif option == 2:
                 print("View tasks Selected")
             elif option == 3:
@@ -24,7 +25,8 @@ def start_menu():
             elif option == 4:
                 print("Delete task Selected")
             elif option == 5:
-                print("Filter tasks Selected")
+                from service import filter_tasks_by_status
+                filter_tasks_by_status
             elif option == 6:
                 print("Goodbye")
                 break

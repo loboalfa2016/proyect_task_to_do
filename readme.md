@@ -1,6 +1,6 @@
 ##  Core Functions
 
-### 📌 Description
+###  Description
 This project includes three main functionalities: validating input data, adding tasks, and updating existing tasks. These functions work together to ensure correct task management.
 
 ---
@@ -21,7 +21,7 @@ This validation is case-insensitive.
 
 ---
 
-## ➕ add_task()
+##  add_task()
 
 ###  Description
 This function allows the user to create a new task by entering its information.

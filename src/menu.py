@@ -25,8 +25,7 @@ def start_menu():
                 from service import update_task
                 update_task()
             elif option == 4:
-                from service import delete_task
-                delete_task()
+                print("Delete task Selected")
             elif option == 5:
                 from service import task, filter_tasks_by_status
                 search_status = input("Enter the status to filter by (Pending, In Progress, Completed): ")

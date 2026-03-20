@@ -58,58 +58,60 @@ def filter_tasks_by_status(tasks, search_status):
 
     return filtered_tasks
 
-
-
-
-
-
-
-
-
-
-
-listar_tareas= ""
-def actualizar_tarea():
-    if task:
-        listar_tareas()
-        try:
-            indice = int(input("Ingrese el número de la tarea a actualizar: ")) - 1
-            if 0 <= indice < len(task):
-                tarea = task[indice]
-                print("\nIngrese los nuevos datos de la tarea (dejar en blanco para no cambiar):")
-                titulo = input(f"Título ({tarea['titulo']}): ")
-                descripcion = input(f"Descripción ({tarea['descripcion']}): ")
-                prioridad = input(f"Prioridad ({tarea['prioridad']}): ")
-                
-                print("\nSeleccione el nuevo estado de la tarea:")
-                print("1. Pendiente")
-                print("2. En progreso")
-                print("3. Completada")
-                opcion_estado = input("Ingrese una opción (dejar en blanco para no cambiar): ")
-
-                if titulo:
-                    tarea['titulo'] = titulo
-                if descripcion:
-                    tarea['descripcion'] = descripcion
-                if prioridad:
-                    if valiadation.validar_prioridad(prioridad):
-                        tarea['prioridad'] = prioridad
-                    else:
-                        print("Prioridad inválida. No se cambió la prioridad.")
-                if opcion_estado:
-                    match opcion_estado:
-                        case "1":
-                            tarea['estado'] = "pendiente"
-                        case "2":
-                            tarea['estado'] = "en progreso"
-                        case "3":
-                            tarea['estado'] = "completada"
-                        case _:
-                            print("Opción inválida. No se cambió el estado.")
-                print("Tarea actualizada con éxito!")
-            else:
-                print("Índice inválido.")
-        except ValueError:
-            print("Índice inválido.")
+task = []
+def task_listing():
+    option = -1
+    if option == 3:
+        print("the task list is: \n")
+    if len(task) > 0:
+        for i, j in enumerate(task, start=1):
+            print(f'task #{i + 1} . NAME:{j["name"]} STATE: {j["state"]} PRIORITY: {j["priority"]} \n')
     else:
-        print("No hay tareas.")
+        print("empty list")
+
+
+def update_task():
+    if task:
+        task_listing()
+        try:
+            indice = int(input("Enter the task # to update: ")) - 1
+            if 0 <= indice < len(task):
+                task = task[indice]
+                print("\nEnter the new task information (leave blank to stop making changes): ")
+                title = input(f"Title ({task['title']}): ")
+                description = input(f"Description ({task['description']}): ")
+                priority = input(f"Priority ({task['priority']}): ")
+                
+                print("\nSelecct the task's new status: ")
+                print("1. Pending")
+                print("2. In Progress")
+                print("3. Completed")
+                status_option = input("Enter the new task status (leave blank to stop making changes): ")
+
+                if title:
+                    task['title'] = title
+                if description:
+                    task['description'] = description
+                if priority:
+                    if valiadation.validar_prioridad(priority):
+                        task['priority'] = priority
+                    else:
+                        print("Invalid priority. Not changed.")
+                if status_option:
+                    match status_option:
+                        case "1":
+                            task['status'] = "pending"
+                        case "2":
+                            task['status'] = "in progress"
+                        case "3":
+                            task['status'] = "completed"
+                        case _:
+                            print("Invalid option. Not changed.")
+                print("Task successfuly updated!")
+            else:
+                print("Invalid Index.")
+        except ValueError:
+            print("Invalid Index.")
+    else:
+        print("No tasks.")
+

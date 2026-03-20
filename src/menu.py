@@ -19,7 +19,8 @@ def start_menu():
                 from service import add_task
                 add_task()
             elif option == 2:
-                print("View tasks Selected")
+                from service import task_listing
+                task_listing()
             elif option == 3:
                 print("Update tasks Selected")
             elif option == 4:

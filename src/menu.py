@@ -25,10 +25,19 @@ def start_menu():
                 from service import update_task
                 update_task()
             elif option == 4:
-                print("Delete task Selected")
+                from service import delete_task
+                delete_task()
             elif option == 5:
-                from service import filter_tasks_by_status
-                filter_tasks_by_status()
+                from service import filter_tasks_by_status, selected_task
+
+                status = input("Enter status to filter (Pending, In Progress, Completed): ")
+                result = filter_tasks_by_status(selected_task, status)
+
+                if result:
+                    for i, t in enumerate(result, start=1):
+                     print(f"{i}. {t['title']} - {t['status']} - {t['priority']}")
+                else:
+                        print("No tasks found with that status.")
             elif option == 6:
                 print("Goodbye")
                 break

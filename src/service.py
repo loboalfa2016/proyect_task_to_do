@@ -116,6 +116,7 @@ def update_task():
         print("No tasks.")
 
 
+
 def show_task(): #crea la funcion para mostrar tareas
     for i, t in enumerate(task): # utilizamos "for" "in" para que recorra todas las tareas teniendo en cuenta la posicion de la tarea (i), 0,1,2 y cada tarea "t" tittle
         print(i + 1, "-", t["title"]) #mostramos el resultado "print", el numero de la tarea "i", el guion "-" es solo para que se vea mas ordenado, "t" es titulo de la tarea, metemos en [] oara que muestre el nombre de la tarea seleccionada
@@ -143,3 +144,28 @@ delete_task() #De la linea 29-32 es prueba
 print("Final list:\n")
 show_task ()
 print()
+
+def delete_task(): #crea la funcion para mostrar tareas
+    if len(task) == 0:# utilizamos "for" "in" para que recorra todas las tareas teniendo en cuenta la posicion de la tarea (i), 0,1,2 y cada tarea "t" tittle
+        print("No tasks to delete\n")
+        return #mostramos el resultado "print", el numero de la tarea "i", el guion "-" es solo para que se vea mas ordenado, "t" es titulo de la tarea, metemos en [] oara que muestre el nombre de la tarea seleccionada
+ #Aqui creamos la funcion con "DEF"
+    task_listing() #Le mostramos al usuario las tareas para que el usuario vea cual va a borrar
+
+    while True: #Usamos while true hasta que el usuario lo haga bien
+        try:  #Intentamos utilizar el codigo sin que se rompa
+            i = int(input("\nEnter the task number to delete: ")) -1 #Pedimos un numero y lo convertimos a numero entero
+
+            if 0 <= i < len(task):
+                task.pop(i)
+                print("Task deleted\n")
+                break
+            else:
+                print("Invalid number")
+
+        except:
+            print("Error, enter a number\n") #Si el usuario escribe letras evita que se dañe todo el programa
+
+#NANDO"
+
+

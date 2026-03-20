@@ -22,12 +22,13 @@ def start_menu():
                 from service import task_listing
                 task_listing()
             elif option == 3:
-                print("Update tasks Selected")
+                from service import update_task
+                update_task()
             elif option == 4:
                 print("Delete task Selected")
             elif option == 5:
                 from service import filter_tasks_by_status
-                filter_tasks_by_status
+                filter_tasks_by_status()
             elif option == 6:
                 print("Goodbye")
                 break

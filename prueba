@@ -1,0 +1,15 @@
+tareas = []
+titulo=input("Dime el titulo: ")
+descripcion=input("Dime la descripcion: ")
+prioridad=input("Dime la prioridad: ")
+estado=input("Dime el estado: ")
+
+tarea={
+    "Titulo": titulo,
+    "descripcion": descripcion,
+    "prioridad": prioridad,
+    "estado": estado
+}
+
+tareas.append(tarea)
+print(tareas)

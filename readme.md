@@ -9,13 +9,13 @@ This project includes three main functionalities: validating input data, adding 
 
 These functions are used to verify that the user input is valid before saving or updating tasks.
 
-### 🔤 validate_title(title)
+###  validate_title(title)
 Checks that the task title is not empty.
 
-### 📝 validate_description(description)
+###  validate_description(description)
 Checks that the task description is not empty.
 
-### ⚡ validate_priority(priority)
+###  validate_priority(priority)
 Checks that the priority is valid (`high`, `mid`, `low`).  
 This validation is case-insensitive.
 

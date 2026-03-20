@@ -1,47 +1,34 @@
-#def delete_task():
-#Defines the function responsible for deleting a task.
+Created menu:
+Function defined as #start_menu will display the menu:
+    TO-DO PRO MENU
+      1. Create New Task
+      2. View Tasks
+      3. Update Task
+      4. Delete Task
+      5. Filter Tasks
+      6. Exit Menu
+The function "show_menu will execute in bucle the start_menu until user selects option #6. Exit Menu
+  inside the bucle the number entered by the user will import and execute a function from service.py like this
+    if option entered == 1
+    will import: 'add_task()'
+    will enable user to: Create task (Name the task, add a description, set a priority and tag it with a status)
+    
+    if option entered == 2
+    will import: 'task_listing()'
+    will enable user to: View existing Tasks
+    
+    if option entered == 3
+    will import: 'update_task()'
+    will enable user to: Update Task details. 
 
-#if not selected_task:
-#Checks if the task list is empty.
+    if option entered == 4
+    will import: delete_task()
+    will enable user to: Remove a taskk from the existing tasks list
 
-#print("No tasks to delete\n")
-#Displays a message if there are no tasks.
+    if option entered == 5
+    will import: filter_tasks_by_status
+    will enable user to: Get the list of tasks that match with the entered option
 
-#return
-#Stops the function execution.
-
-#task_listing()
-#Shows the list of current tasks to the user.
-
-#while True:
-#Creates a loop to keep asking until valid input is given.
-
-#try:
-Attempts to execute code safely.
-
-#i = int(input(...)) - 1
-#Gets user input, converts it to an integer, and adjusts the index.
-
-#if 0 <= i < len(selected_task):
-#Validates that the input is within the valid range.
-
-#selected_task.pop(i)
-#Removes the selected task from the list.
-
-#print("Task deleted\n")
-#Confirms that the task was deleted.
-
-#break
-#Exits the loop after successful deletion.
-
-#else:
-#Handles invalid index values.
-
-#print("Invalid number")
-#Shows an error if the number is out of range.
-
-#except ValueError:
-#Catches errors when input is not a number.
-
-#print("Error, enter a number\n")
-#Displays an error message for invalid input.
+    if option entered == 6
+    will import: N/A
+    will enable user to: Stop the program and exit the menu with a "Goodbye" message.

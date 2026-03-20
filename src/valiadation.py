@@ -1,8 +1,8 @@
-def validar_titulo(titulo):
-    return len(titulo) > 0
+def validate_title(title):
+    return len(title) > 0
 
-def validar_descripcion(descripcion):
+def validate_description(descripcion):
     return len(descripcion) > 0
 
-def validar_prioridad(prioridad):
-    return prioridad in ["alta", "media", "baja"]
+def validate_priority(priority):
+    return priority in ["high", "mid", "low"]

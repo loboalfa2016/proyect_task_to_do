@@ -60,6 +60,7 @@ except ValueError:
 
 Prevents the program from crashing if the user enters non-numeric values
 ##  Core Functions
+# Core Functions
 
 ###  Description
 This project includes three main functionalities: validating input data, adding tasks, and updating existing tasks. These functions work together to ensure correct task management.
@@ -71,6 +72,11 @@ This project includes three main functionalities: validating input data, adding 
 These functions are used to verify that the user input is valid before saving or updating tasks.
 
 ### validate_title(title)
+## Validation Functions
+
+These functions are used to verify that the user input is valid before saving or updating tasks.
+
+###  validate_title(title)
 Checks that the task title is not empty.
 
 ###  validate_description(description)
@@ -83,6 +89,7 @@ This validation is case-insensitive.
 ---
 
 ##  add_task()
+## add_task()
 
 ###  Description
 This function allows the user to create a new task by entering its information.
@@ -99,6 +106,7 @@ This function allows the user to create a new task by entering its information.
 ## update_task()
 
 ###  Description
+### Description
 This function allows the user to modify an existing task.
 
 ###  How it works
@@ -122,6 +130,7 @@ This function allows the user to modify an existing task.
 ---
 
 ##  Example Workflow
+## Example Workflow
 
 1. Add a task  
 2. View the task list  

@@ -1,42 +1,42 @@
 # TO-DO PRO 📝
 
-Un simple gestor de tareas desarrollado en Python para la línea de comandos.
+A simple task manager developed in Python for the command line.
 
-## Descripción
-**TO-DO PRO** es un programa que te permite gestionar tus tareas de manera eficiente. Puedes crear, listar, actualizar y eliminar tareas, así como filtrarlas por su estado actual.
+## Description
+**TO-DO PRO** is a program that allows you to manage your tasks efficiently. You can create, list, update, and delete tasks, as well as filter them by their current status.
 
-## Funcionalidades
-*   **Crear:** Nuevas tareas con título, descripción, prioridad y estado.
-*   **Listar:** Ver todas las tareas registradas con sus detalles.
-*   **Actualizar:** Modificar los detalles de una tarea existente.
-*   **Eliminar:** Quitar tareas de la lista.
-*   **Filtrar:** Buscar tareas específicas según su estado.
+## Features
+* **Create:** Add new tasks with title, description, priority, and status.  
+* **List:** View all registered tasks with their details.  
+* **Update:** Modify the details of an existing task.  
+* **Delete:** Remove tasks from the list.  
+* **Filter:** Search for specific tasks based on their status.  
 
-## Estructura del proyecto
-El proyecto se divide en tres archivos principales:
-*   `menu.py`: Maneja la lógica del menú y la interacción con el usuario.
-*   `services.py`: Contiene las funciones de gestión y almacenamiento de tareas.
-*   `main.py`: Punto de entrada que inicia la ejecución del programa.
+## Project Structure
+The project is divided into three main files:
+* `menu.py`: Handles the menu logic and user interaction.  
+* `services.py`: Contains task management and storage functions.  
+* `main.py`: Entry point that starts the program execution.  
 
-## Requisitos
-*   **Python 3.10** o superior (necesario para el soporte de la sentencia `match`).
+## Requirements
+* **Python 3.10** or higher (required for `match` statement support).
 
-## Ejecución
-1.  Clona el repositorio en tu máquina local.
-2.  Abre una terminal en la carpeta del proyecto.
-3.  Ejecuta el siguiente comando:
-    ```bash
-    python main.py
-    ```
+## Execution
+1. Clone the repository to your local machine.  
+2. Open a terminal in the project folder.  
+3. Run the following command:
+   ```bash
+   python main.py
+   ```
 
-## Uso
-1.  Inicia el programa.
-2.  Selecciona una opción del menú principal ingresando el número correspondiente.
-3.  Sigue las instrucciones en consola para completar la acción deseada.
+## Usage
+1. Start the program.  
+2. Select an option from the main menu by entering the corresponding number.  
+3. Follow the instructions in the console to complete the desired action.  
 
 ---
 
-## Código del Proyecto
+## Project Code
 
 ### 1. `menu.py`
 ```python
@@ -72,7 +72,7 @@ def show_menu():
                 print("Invalid option. Please try again.")
 ```
 
-### 2. service.py
+### 2. `services.py`
 ```python
 import valiadation
 
@@ -83,7 +83,7 @@ def add_task():
     description = input("Enter the TASK description: ")
     priority = input("Enter the TASK priority (high, mid, low): ")
 
-    print("\nSelect the Task status :")
+    print("\nSelect the task status:")
     print("1. Pending")
     print("2. In Progress")
     print("3. Completed")
@@ -97,10 +97,11 @@ def add_task():
         case "3": 
             status = 'Completed'
         case _:
-            print("error")
+            print("Error")
             status = 'Pending'
+
     if valiadation.validate_title(title) and valiadation.validate_description(description) and valiadation.validate_priority(priority):
-        task_data ={
+        task_data = {
             "title": title,
             "description": description,
             "priority": priority,
@@ -108,7 +109,7 @@ def add_task():
         } 
         selected_task.append(task_data)
     else:
-        print("error")
+        print("Error")
 
 
 def filter_tasks_by_status(tasks, search_status):
@@ -128,37 +129,38 @@ def filter_tasks_by_status(tasks, search_status):
     search_status = search_status.strip().lower()
 
     filtered_tasks = [
-    task for task in tasks
-    if task.get("status", "").strip().lower() == search_status
+        task for task in tasks
+        if task.get("status", "").strip().lower() == search_status
     ]
 
     return filtered_tasks
 
+
 def task_listing():
     if len(selected_task) > 0:
         for i, j in enumerate(selected_task, start=1):
-            print(f'task #{i} \n NAME: {j["title"]} \n STATUS: {j["status"]} \n PRIORITY: {j["priority"]} \n')
+            print(f'Task #{i} \n NAME: {j["title"]} \n STATUS: {j["status"]} \n PRIORITY: {j["priority"]} \n')
     else:
-        print("empty list")
+        print("Empty list")
 
 
 def update_task():
     if selected_task:
         task_listing()
         try:
-            indice = int(input("Enter the task # to update: ")) - 1
-            if 0 <= indice < len(selected_task):
-                task_selected = selected_task[indice]
-                print("\nEnter the new task information (leave blank to stop making changes): ")
+            index = int(input("Enter the task # to update: ")) - 1
+            if 0 <= index < len(selected_task):
+                task_selected = selected_task[index]
+                print("\nEnter the new task information (leave blank to keep current values):")
                 title = input(f"Title ({task_selected['title']}): ")
                 description = input(f"Description ({task_selected['description']}): ")
                 priority = input(f"Priority ({task_selected['priority']}): ")
                 
-                print("\nSelecct the task's new status: ")
+                print("\nSelect the new task status:")
                 print("1. Pending")
                 print("2. In Progress")
                 print("3. Completed")
-                status_option = input("Enter the new task status (leave blank to stop making changes): ")
+                status_option = input("Enter the new task status (leave blank to keep current): ")
 
                 if title:
                     task_selected['title'] = title
@@ -179,11 +181,12 @@ def update_task():
                             task_selected['status'] = "Completed"
                         case _:
                             print("Invalid option. Not changed.")
-                print("Task successfuly updated!")
+
+                print("Task successfully updated!")
             else:
-                print("Invalid Index.")
+                print("Invalid index.")
         except ValueError:
-            print("Invalid Index.")
+            print("Invalid index.")
     else:
         print("No tasks.")
 
@@ -197,7 +200,7 @@ def delete_task():
 
     while True: 
         try:  
-            i = int(input("\nEnter the task number to delete: ")) -1 
+            i = int(input("\nEnter the task number to delete: ")) - 1 
 
             if 0 <= i < len(selected_task):
                 selected_task.pop(i)
@@ -207,23 +210,22 @@ def delete_task():
                 print("Invalid number")
 
         except ValueError:
-            print("Error, enter a number\n") 
-            
-
-
+            print("Error, enter a number\n")
 ```
-### 3. validation 
+
+### 3. `validation.py`
 ```python
 def validate_title(title):
     return len(title) > 0
 
-def validate_description(descripcion):
-    return len(descripcion) > 0
+def validate_description(description):
+    return len(description) > 0
 
 def validate_priority(priority):
     return priority.lower() in ["high", "mid", "low"]
 ```
-### 4. main
+
+### 4. `main.py`
 ```python
 from menu import start_menu
 
